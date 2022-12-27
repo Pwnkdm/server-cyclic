@@ -5,12 +5,8 @@ import userController from "./Routes/userRoute.js";
 
 const app = express();
 app.use(express.json());
-const corsOptions = {
-  origin: "http://localhost:8080",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use("/user", userController);
