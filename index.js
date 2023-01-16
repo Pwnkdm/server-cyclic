@@ -1,18 +1,16 @@
-import express from "express";
-import cors from "cors";
-import Connection from "./Config/db.js";
-import userController from "./Routes/userRoute.js";
+const express = require("express");
+const cors = require("cors");
+const { connection } = require("./config/db");
+const { userController } = require("./Routes/userRoutes");
 
 const app = express();
 app.use(express.json());
-
 app.use(cors());
-
 app.use(express.urlencoded({ extended: true }));
 app.use("/user", userController);
 
-app.listen(process.env.PORT || 8080, async () => {
-  await Connection;
+app.listen(process.env.PORT || 8080, async (req, res) => {
+  await connection;
   console.log("connected to db");
-  console.log("listening on http://localhost:8080");
+  console.log(`server is running on http://localhost:${process.env.PORT}`);
 });
